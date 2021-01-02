@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   const browser = await puppeteer.launch({
     headless: true,
     waitUntil: "domcontentloaded",
-    args: ["--no-sandbox"],
+    args: ["--no-sandbox"], 
   });
 
   let iterator = 0;
