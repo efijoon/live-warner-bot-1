@@ -11,7 +11,6 @@ const dataTwo = require("./data/data-2.json");
 const dataThree = require("./data/data-3.json");
 const dataFour = require("./data/data-4.json");
 const dataFive = require("./data/data-5.json");
-const dataSix = require("./data/data-6.json");
 
 // ===================== DATA ============================== //
 
@@ -32,50 +31,55 @@ app.get("/", (req, res) => {
   let iteratorOne = 0;
   let iteratorUpOne = true;
   const browserOne = await puppeteer.launch({
+    executablePath: "/usr/bin/chromium-browser",
     headless: true,
     waitUntil: "domcontentloaded",
     args: ["--no-sandbox"],
   });
 
-  let iteratorTwo = 0;
-  let iteratorUpTwo = true;
-  const browserTwo = await puppeteer.launch({
-    headless: true,
-    waitUntil: "domcontentloaded",
-    args: ["--no-sandbox"],
-  });
+  // let iteratorTwo = 0;
+  // let iteratorUpTwo = true;
+  // const browserTwo = await puppeteer.launch({
+  //   // executablePath: "/usr/bin/chromium-browser",
+  //   headless: true,
+  //   waitUntil: "domcontentloaded",
+  //   args: ["--no-sandbox"],
+  // });
 
-  let iteratorThree = 0;
-  let iteratorUpThree = true;
-  const browserThree = await puppeteer.launch({
-    headless: true,
-    waitUntil: "domcontentloaded",
-    args: ["--no-sandbox"],
-  });
+  // let iteratorThree = 0;
+  // let iteratorUpThree = true;
+  // const browserThree = await puppeteer.launch({
+  //   // executablePath: "/usr/bin/chromium-browser",
+  //   headless: true,
+  //   waitUntil: "domcontentloaded",
+  //   args: ["--no-sandbox"],
+  // });
 
-  let iteratorFour = 0;
-  let iteratorUpFour = true;
-  const browserFour = await puppeteer.launch({
-    headless: true,
-    waitUntil: "domcontentloaded",
-    args: ["--no-sandbox"],
-  });
+  // let iteratorFour = 0;
+  // let iteratorUpFour = true;
+  // const browserFour = await puppeteer.launch({
+  //   // executablePath: "/usr/bin/chromium-browser",
+  //   headless: true,
+  //   waitUntil: "domcontentloaded",
+  //   args: ["--no-sandbox"],
+  // });
 
-  let iteratorFive = 0;
-  let iteratorUpFive = true;
-  const browserFive = await puppeteer.launch({
-    headless: true,
-    waitUntil: "domcontentloaded",
-    args: ["--no-sandbox"],
-  });
+  // let iteratorFive = 0;
+  // let iteratorUpFive = true;
+  // const browserFive = await puppeteer.launch({
+  //   // executablePath: "/usr/bin/chromium-browser",
+  //   headless: true,
+  //   waitUntil: "domcontentloaded",
+  //   args: ["--no-sandbox"],
+  // });
 
   setInterval(async () => {
     console.log(
-      iteratorOne,
-      iteratorTwo,
-      iteratorThree,
-      iteratorFour,
-      iteratorFive
+      iteratorOne
+      // iteratorTwo,
+      // iteratorThree,
+      // iteratorFour,
+      // iteratorFive
     );
 
     let time = moment(Date.now()).format("HHmmss");
@@ -97,61 +101,61 @@ app.get("/", (req, res) => {
         });
     }
 
-    if (iteratorUpTwo) {
-      iteratorUpTwo = false;
+    // if (iteratorUpTwo) {
+    //   iteratorUpTwo = false;
 
-      getData(browserTwo, dataTwo, iteratorTwo)
-        .then((result) => {
-          iteratorUpTwo = true;
-          iteratorTwo++;
-        })
-        .catch((result) => {
-          iteratorUpTwo = true;
-          iteratorTwo++;
-        });
-    }
+    //   getData(browserTwo, dataTwo, iteratorTwo)
+    //     .then((result) => {
+    //       iteratorUpTwo = true;
+    //       iteratorTwo++;
+    //     })
+    //     .catch((result) => {
+    //       iteratorUpTwo = true;
+    //       iteratorTwo++;
+    //     });
+    // }
 
-    if (iteratorUpThree) {
-      iteratorUpThree = false;
+    // if (iteratorUpThree) {
+    //   iteratorUpThree = false;
 
-      getData(browserThree, dataThree, iteratorThree)
-        .then((result) => {
-          iteratorUpThree = true;
-          iteratorThree++;
-        })
-        .catch((result) => {
-          iteratorUpThree = true;
-          iteratorThree++;
-        });
-    }
+    //   getData(browserThree, dataThree, iteratorThree)
+    //     .then((result) => {
+    //       iteratorUpThree = true;
+    //       iteratorThree++;
+    //     })
+    //     .catch((result) => {
+    //       iteratorUpThree = true;
+    //       iteratorThree++;
+    //     });
+    // }
 
-    if (iteratorUpFour) {
-      iteratorUpFour = false;
+    // if (iteratorUpFour) {
+    //   iteratorUpFour = false;
 
-      getData(browserFour, dataFour, iteratorFour)
-        .then((result) => {
-          iteratorUpFour = true;
-          iteratorFour++;
-        })
-        .catch((result) => {
-          iteratorUpFour = true;
-          iteratorFour++;
-        });
-    }
+    //   getData(browserFour, dataFour, iteratorFour)
+    //     .then((result) => {
+    //       iteratorUpFour = true;
+    //       iteratorFour++;
+    //     })
+    //     .catch((result) => {
+    //       iteratorUpFour = true;
+    //       iteratorFour++;
+    //     });
+    // }
 
-    if (iteratorUpFive) {
-      iteratorUpFive = false;
+    // if (iteratorUpFive) {
+    //   iteratorUpFive = false;
 
-      getData(browserFive, dataFive, iteratorFive)
-        .then((result) => {
-          iteratorUpFive = true;
-          iteratorFive++;
-        })
-        .catch((result) => {
-          iteratorUpFive = true;
-          iteratorFive++;
-        });
-    }
+    //   getData(browserFive, dataFive, iteratorFive)
+    //     .then((result) => {
+    //       iteratorUpFive = true;
+    //       iteratorFive++;
+    //     })
+    //     .catch((result) => {
+    //       iteratorUpFive = true;
+    //       iteratorFive++;
+    //     });
+    // }
     // }
   }, 1000);
 
