@@ -31,8 +31,8 @@ app.get("/", (req, res) => {
   let iteratorOne = 0;
   let iteratorUpOne = true;
   const browserOne = await puppeteer.launch({
-    executablePath: "/usr/bin/chromium-browser",
-    headless: true,
+    // executablePath: "/usr/bin/chromium-browser",
+    headless: false,
     waitUntil: "domcontentloaded",
     args: ["--no-sandbox"],
   });
@@ -94,10 +94,16 @@ app.get("/", (req, res) => {
         .then((result) => {
           iteratorUpOne = true;
           iteratorOne++;
+          if (iteratorOne == dataOne.length - 1) {
+            iteratorUpOne = false;
+          }
         })
         .catch((result) => {
           iteratorUpOne = true;
           iteratorOne++;
+          if (iteratorOne == dataOne.length - 1) {
+            iteratorUpOne = false;
+          }
         });
     }
 
@@ -108,10 +114,16 @@ app.get("/", (req, res) => {
     //     .then((result) => {
     //       iteratorUpTwo = true;
     //       iteratorTwo++;
+    //       if (iteratorTwo == dataTwo.length - 1) {
+    //         iteratorUpTwo = false;
+    //       }
     //     })
     //     .catch((result) => {
     //       iteratorUpTwo = true;
     //       iteratorTwo++;
+    //       if (iteratorTwo == dataTwo.length - 1) {
+    //         iteratorUpTwo = false;
+    //       }
     //     });
     // }
 
@@ -122,10 +134,16 @@ app.get("/", (req, res) => {
     //     .then((result) => {
     //       iteratorUpThree = true;
     //       iteratorThree++;
+    //       if (iteratorThree == dataThree.length - 1) {
+    //         iteratorUpThree = false;
+    //       }
     //     })
     //     .catch((result) => {
     //       iteratorUpThree = true;
     //       iteratorThree++;
+    //       if (iteratorThree == dataThree.length - 1) {
+    //         iteratorUpThree = false;
+    //       }
     //     });
     // }
 
@@ -136,10 +154,16 @@ app.get("/", (req, res) => {
     //     .then((result) => {
     //       iteratorUpFour = true;
     //       iteratorFour++;
+    //       if (iteratorFour == dataFour.length - 1) {
+    //         iteratorUpFour = false;
+    //       }
     //     })
     //     .catch((result) => {
     //       iteratorUpFour = true;
     //       iteratorFour++;
+    //       if (iteratorFour == dataFour.length - 1) {
+    //         iteratorUpFour = false;
+    //       }
     //     });
     // }
 
@@ -150,10 +174,16 @@ app.get("/", (req, res) => {
     //     .then((result) => {
     //       iteratorUpFive = true;
     //       iteratorFive++;
+    //       if (iteratorFive == dataFive.length - 1) {
+    //         iteratorUpFive = false;
+    //       }
     //     })
     //     .catch((result) => {
     //       iteratorUpFive = true;
     //       iteratorFive++;
+    //       if (iteratorFive == dataFive.length - 1) {
+    //         iteratorUpFive = false;
+    //       }
     //     });
     // }
     // }
@@ -212,19 +242,19 @@ app.get("/", (req, res) => {
         })
         .then(async (result) => {
           const namad = await Namad.findOne({ namadID: data[iterator].id });
-          if (namad) {
-            await namad.updateOne({
-              namadID: data[iterator].id,
-              name: data[iterator].name,
-              data: result,
-            });
-          } else {
+          if (namad == null) {
             const newNamad = new Namad({
               namadID: data[iterator].id,
               name: data[iterator].name,
               data: result,
             });
             await newNamad.save();
+          } else {
+            await namad.updateOne({
+              namadID: data[iterator].id,
+              name: data[iterator].name,
+              data: result,
+            });
           }
 
           if (iterator == data.length) {
